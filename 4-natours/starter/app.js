@@ -10,14 +10,10 @@ const userRouter = require('./routes/userRoutes');
 // 1. MIDDLEWARES
 app.use(morgan('dev'));
 app.use(express.json()); // middleware: to modify the incoming request data; read body in req.
+app.use(express.static(`${__dirname}/public`));
 
 app.use((req, res, next) => {
   console.log('Hello from the middleware 👋 ');
-  next();
-});
-
-app.use((req, res, next) => {
-  req.requestTime = new Date().toISOString();
   next();
 });
 
